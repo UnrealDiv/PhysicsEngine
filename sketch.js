@@ -17,11 +17,18 @@ function setup() {
 }
 
 
+function mouseClicked() {
+  let newCircle = new Object(mouseX,mouseY,20,20);
+  world.addObject(newCircle);
+}
 function draw() {
   background(0);
-  world.enableGravity();
-  world.addWind(0.05);
+  // world.addWind(0.05);
   world.show();
+  world.checkBounds();
+  world.enableGravity();
+
 }
 window.setup = setup;
 window.draw = draw;
+window.mouseClicked = mouseClicked;
