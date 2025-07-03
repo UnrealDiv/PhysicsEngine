@@ -23,11 +23,10 @@ function mouseClicked() {
 }
 function draw() {
   background(0);
-  // world.addWind(0.05);
+  // world.addWind(-0.1);
   world.show();
   world.checkBounds();
   world.enableGravity();
-
 }
 window.setup = setup;
 window.draw = draw;

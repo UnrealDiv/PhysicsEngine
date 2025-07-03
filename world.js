@@ -1,35 +1,3 @@
-export class Object {
-  constructor(x, y, w) {
-    this.width = w;
-    this.height = w;
-    this.mass = 1;
-    this.position = createVector(x, y);
-    this.velocity = createVector(0, 0);
-    this.acceleration = createVector(0, 0);
-    this.color = {r:Math.random()*256,g:Math.random()*256,b:Math.random()*256};
-  }
-
-  show() {
-    // fill(this.color.r,this.color.g,this.color.b);
-    fill(100,200,100);
-    console.log(this.color);
-    
-    ellipse(this.position.x, this.position.y, this.width, this.height);
-  }
-
-  update() {
-    this.velocity.add(this.acceleration);
-    this.position.add(this.velocity);
-    this.acceleration.mult(0);
-  }
-
-  applyForce(force) {
-    let fx = force.x / this.mass;
-    let fy = force.y / this.mass;
-    this.acceleration.x += fx;
-    this.acceleration.y += fy;
-  }
-}
 
 export class World {
   constructor(gravity, resistance) {
@@ -44,8 +12,19 @@ export class World {
       if (obj.position.y >= this.boundary.y - obj.height / 2) {
         obj.velocity.y *= -0.8;
         obj.position.y = this.boundary.y - obj.height / 2;
+
+        if(obj.velocity.x !=0 && obj.position.y >= this.boundary.y - obj.height / 2){
+            console.log("hi");
+            obj.velocity.x = obj.velocity.x - obj.velocity.x/4;
+        }
+
       }
-      if (obj.position.x >= this.boundary.x || obj.position.x < 0) {
+      if (obj.position.x >= this.boundary.x- obj.width/2 || obj.position.x - (obj.width/2)< 0) {
+        if(obj.position.x >= this.boundary.x- (obj.width)/2 ){
+            obj.position.x = this.boundary.x - (obj.width)/ 2;
+        }else if(obj.position.x - (obj.width)/2 <=0){
+            obj.position.x = 0+(obj.width)/ 2;
+        }
         obj.velocity.x *= -0.8;
       }
     }
@@ -56,7 +35,7 @@ export class World {
       if (obj.position.y + obj.height / 2 >= this.boundary.y && Math.abs(obj.velocity.y) < 0.5) {
         obj.velocity.y = 0;
         obj.position.y = this.boundary.y - obj.height / 2;
-      } else {
+      }else {
         let gravityVector = createVector(0, this.gravity);
         obj.applyForce(gravityVector);
       }

@@ -4,7 +4,7 @@ export class Object {
     this.height = w;
     this.mass = 1;
     this.position = createVector(x, y);
-    this.velocity = createVector(0, 0);
+    this.velocity = createVector(5, 0);
     this.acceleration = createVector(0, 0);
     this.color = {r:Math.random()*256,g:Math.random()*256,b:Math.random()*256};
   }
