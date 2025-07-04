@@ -1,17 +1,26 @@
+
+
 export class Object {
-  constructor(x, y, w) {
+  constructor(x,y,w,h,type) {
+    this.id ;
     this.width = w;
-    this.height = w;
-    this.mass = 1;
+    this.height = h;
+    this.mass = 2;
+    this.type = type;
     this.position = createVector(x, y);
-    this.velocity = createVector(5, 0);
+    this.velocity = createVector(100, 0);
     this.acceleration = createVector(0, 0);
     this.color = {r:Math.random()*256,g:Math.random()*256,b:Math.random()*256};
   }
 
   show() {
     fill(this.color.r,this.color.g,this.color.b);
-    ellipse(this.position.x, this.position.y, this.width, this.height);
+    if(this.type == "ball"){
+        ellipse(this.position.x, this.position.y, this.width, this.height);
+    }else if(this.type == "rect"){
+        rectMode(CENTER);
+        rect(this.position.x, this.position.y, this.width, this.height);
+    }
   }
 
   update() {
