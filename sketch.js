@@ -75,7 +75,7 @@ function setup() {
   const sliderContainer = createDiv().class('slider-group');
 
   windSlider = createSlider(-1, 1, 0.2, 0.2).parent(sliderContainer);
-  intialVelocitySlider = createSlider(0, 30, 5, 1).parent(sliderContainer);
+  intialVelocitySlider = createSlider(-30, 30, 5, 1).parent(sliderContainer);
   gravitySlider = createSlider(0, 1, 0.2, 0.05).parent(sliderContainer);
   bounceSlider = createSlider(0, 1, 0.8, 1).parent(sliderContainer);
   massSlider = createSlider(2, 100, 5, 1).parent(sliderContainer);
