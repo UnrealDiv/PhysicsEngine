@@ -2,17 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Physics Simulation</title>
 
-    <title>Sketch</title>
-
-    <link rel="stylesheet" type="text/css" href="style.css">
-
+    <link rel="stylesheet" href="style.css" />
     <script src="libraries/p5.min.js"></script>
     <script src="libraries/p5.sound.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Fjalla+One&display=swap" rel="stylesheet">
   </head>
 
   <body>
+    <div class="overlay">
+      <div class="info-card">
+        <h1>Physics Simulation </h1>
+        <p>
+          Click anywhere to spawn particles.<br />
+          Use the sliders above to adjust gravity, wind, mass, and restitution.<br /><br />
+          For mobile devicess slider values are at shown the bottom.
+        </p>
+        <button id="continueBtn">Continue</button>
+      </div>
+    </div>
+
     <script type="module" src="sketch.js"></script>
   </body>
 </html>
+

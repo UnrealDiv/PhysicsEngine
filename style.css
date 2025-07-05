@@ -1,8 +1,102 @@
+/* General responsive setup */
 html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: none; /* Prevent zoom/pan */
+  -webkit-user-select: none;
+  user-select: none;
+  font-family: 'Fjalla One', sans-serif;
+  background-color: #0f172a;
 }
 
+/* Responsive canvas */
 canvas {
   display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  padding: 1rem;
+}
+
+.info-card {
+  width: 90%;
+  max-width: 480px;
+  background: linear-gradient(to bottom right, #ff8308, #f04c05);
+  color: rgb(0, 6, 9);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.info-card h1 {
+  font-size: 1.5rem;
+}
+
+.info-card p {
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+#continueBtn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #092fd9;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+#continueBtn:hover {
+  background-color: #0766d4;
+}
+
+/* Sliders and Controls */
+.slider-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.slider-group > * {
+  flex: 1 1 120px;
+  max-width: 200px;
+}
+
+@media (max-width: 600px) {
+  .info-card h1 {
+    font-size: 1.2rem;
+  }
+
+  .info-card p {
+    font-size: 0.9rem;
+  }
+
+  #continueBtn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
 }

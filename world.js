@@ -3,11 +3,11 @@
 export let massSlider;
 export let massSliderValue = 1;
 
-
 export class World {
   constructor(gravity, friction) {
     this.gravity = gravity;
     this.friction = friction;
+    this.restitution = 1 ;
     this.boundary = createVector(window.innerWidth, window.innerHeight);
     this.objects = [];
   }
@@ -36,7 +36,7 @@ export class World {
         obj.velocity.x *= -0.8 * (1-1/obj.mass);
       }
     }
-    const restitution = 0;
+   
 
 for (let i = 0; i < this.objects.length; i++) {
   let objA = this.objects[i];
@@ -57,7 +57,7 @@ for (let i = 0; i < this.objects.length; i++) {
       let correction = normal.copy().mult(overlap / 2);
       objA.position.sub(correction);
       objB.position.add(correction);
-
+      
       // --- 2. Relative velocity and impulse calculation ---
       let relativeVelocity = p5.Vector.sub(objB.velocity, objA.velocity);
       let speedAlongNormal = relativeVelocity.dot(normal);
@@ -70,7 +70,7 @@ for (let i = 0; i < this.objects.length; i++) {
       let m2 = objB.mass || 1;
 
       //impulse
-      let impulseMagnitude = -(1 + restitution) * speedAlongNormal;
+      let impulseMagnitude = -(1 + this.restitution) * speedAlongNormal;
       impulseMagnitude /= (1 / m1 + 1 / m2);
 
       // Apply impulse
@@ -95,6 +95,12 @@ for (let i = 0; i < this.objects.length; i++) {
 
   addWind(windVal) {
     let windVector = createVector(windVal, 0);
+
+    
+      stroke(255);
+      noFill();
+      // while(i <=window.innerWidth){
+
     for (let obj of this.objects) {
       obj.applyForce(windVector);
     }
