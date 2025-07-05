@@ -30,11 +30,17 @@ function preload() {
   );
 }
 
-function drawGust(x, y, len) {
+function drawWind(x, y, len) {
   beginShape();
   for (let i = 0; i < len; i++) {
     let px = x + i;
-    let py = y + sin((i + frameCount * 0.2) * 0.1) * 5;
+    let py;
+    if(windSlider.value() > 0){
+       py = y + sin((i + frameCount * 0.2) * 0.1) * 5;
+    }else{
+       py = y + sin((i*-1 + frameCount * 0.2) * 0.1) * 5;
+    }
+    
     vertex(px, py);
   }
   endShape();
@@ -42,7 +48,6 @@ function drawGust(x, y, len) {
 
 let windCheckBox ;
 let resetCheckBox;
-
 
 export let shapeSelector;
 let windLines = [];
@@ -107,6 +112,11 @@ function mouseClicked() {
 function draw() {
   background(20);
   // world.addWind(-0.1);
+
+   world.show();
+  world.checkBounds();
+  world.enableGravity();
+  
   if (windowWidth > 768) { // Only display text on wider screens (PC/tablets)
     fill(220);
     textSize(20);
@@ -118,20 +128,17 @@ function draw() {
     // text("Enable Wind", windowWidth - windowWidth*0.15, 50);
   }else{
    fill(255);
-  textSize(14);
+  textSize(20);
   textAlign(LEFT);
-  let yStart = height - 80;
+  let yStart = 200;
   text("Gravity: " + gravitySlider.value(), 20, yStart);
-  text("Mass: " + massSlider.value(), 20, yStart + 20);
-  text("Velocity: " + intialVelocitySlider.value(), 20, yStart + 40);
-  text("Wind: " + windSlider.value(), 20, yStart + 60);
-  text("Restitution: " + bounceSlider.value(), 20, yStart -20);
+  text("Mass: " + massSlider.value(), 20, yStart + 30);
+  text("Velocity: " + intialVelocitySlider.value(), 20, yStart + 60);
+  text("Wind: " + windSlider.value(), 20, yStart + 90);
+  text("Restitution: " + bounceSlider.value(), 20, yStart -30);
   }
 
-  world.show();
-  world.checkBounds();
-  world.enableGravity();
-  
+ 
   
     if (windCheckBox.checked()) {
       world.addWind(windSlider.value());
@@ -141,7 +148,7 @@ function draw() {
 
     // Draw the wind gust as a straight or wavy line
     if(windSlider.value() != 0){
-      drawGust(line.x, line.y, line.length);
+      drawWind(line.x, line.y, line.length);
     }
     
 
