@@ -168,7 +168,7 @@ function draw() {
   }
   } 
   if(resetCheckBox.checked()){
-    resetCheckBox = false;
+    resetCheckBox.checked(false);
     location.reload();
   }
 }
