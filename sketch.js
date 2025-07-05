@@ -75,7 +75,7 @@ function setup() {
   bounceSlider = createSlider(0, 1, 0.8, 1).parent(sliderContainer);
   massSlider = createSlider(2, 100, 5, 1).parent(sliderContainer);
   
-  windCheckBox = createCheckbox("Wind", false).parent(sliderContainer).style('color', 'white').style('font-size', '20px');
+  windCheckBox = createCheckbox("Wind", false).parent(sliderContainer).style('color', 'white').style('font-size', '20px').style('transform-origin', 'left').style('transform', 'scale(1.2)');
   resetCheckBox = createCheckbox("Reset", false).parent(sliderContainer).style('color', 'white').style('font-size', '20px').style('transform', 'scale(1.5)')
   .style('transform-origin', 'left');
   // shapeSelector = createSelect().parent(sliderContainer);
@@ -160,6 +160,7 @@ function draw() {
   }
   } 
   if(resetCheckBox.checked()){
+    resetCheckBox = false;
     location.reload();
   }
 }
