@@ -69,15 +69,15 @@ function setup() {
   // Create a div to hold all sliders responsively
   const sliderContainer = createDiv().class('slider-group');
 
-  windSlider = createSlider(-1, 1, 0, 0.2).parent(sliderContainer);
+  windSlider = createSlider(-1, 1, 0.2, 0.2).parent(sliderContainer);
   intialVelocitySlider = createSlider(0, 30, 5, 1).parent(sliderContainer);
   gravitySlider = createSlider(0, 1, 0.2, 0.05).parent(sliderContainer);
   bounceSlider = createSlider(0, 1, 0.8, 1).parent(sliderContainer);
   massSlider = createSlider(2, 100, 5, 1).parent(sliderContainer);
   
-  windCheckBox = createCheckbox("Enable Wind", false).parent(sliderContainer).style('color', 'white').style('font-size', '20px');;
+  windCheckBox = createCheckbox("Wind", false).parent(sliderContainer).style('color', 'white').style('font-size', '20px');
   resetCheckBox = createCheckbox("Reset", false).parent(sliderContainer).style('color', 'white').style('font-size', '20px').style('transform', 'scale(1.5)')
-  .style('transform-origin', 'left');;
+  .style('transform-origin', 'left');
   // shapeSelector = createSelect().parent(sliderContainer);
   // shapeSelector.option('ball');
   // shapeSelector.option('rect');
