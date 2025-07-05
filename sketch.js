@@ -41,6 +41,7 @@ function drawGust(x, y, len) {
 }
 
 let windCheckBox ;
+let resetCheckBox;
 
 
 export let shapeSelector;
@@ -73,8 +74,10 @@ function setup() {
   gravitySlider = createSlider(0, 1, 0.2, 0.05).parent(sliderContainer);
   bounceSlider = createSlider(0, 1, 0.8, 1).parent(sliderContainer);
   massSlider = createSlider(2, 100, 5, 1).parent(sliderContainer);
-  windCheckBox = createCheckbox("Enable Wind", false).parent(sliderContainer).style('color', 'white');;
   
+  windCheckBox = createCheckbox("Enable Wind", false).parent(sliderContainer).style('color', 'white').style('font-size', '20px');;
+  resetCheckBox = createCheckbox("Reset", false).parent(sliderContainer).style('color', 'white').style('font-size', '20px').style('transform', 'scale(1.5)')
+  .style('transform-origin', 'left');;
   // shapeSelector = createSelect().parent(sliderContainer);
   // shapeSelector.option('ball');
   // shapeSelector.option('rect');
@@ -107,10 +110,10 @@ function draw() {
   if (windowWidth > 768) { // Only display text on wider screens (PC/tablets)
     fill(220);
     textSize(20);
-    text("Gravity: " + world.gravity, windowWidth - windowWidth*0.62, 50);
-    text("Restitution:" + " " + bounceSlider.value(), windowWidth - windowWidth*0.43, 50);
-    text("Mass: " + massSlider.value(), windowWidth - windowWidth*0.26, 50);
-    text("Initial Velocity: " + intialVelocitySlider.value(), windowWidth - windowWidth*0.8, 50);
+    text("Gravity: " + gravitySlider.value(), windowWidth - windowWidth*0.68, 50);
+    text("Restitution:" + " " + bounceSlider.value(), windowWidth - windowWidth*0.53, 50);
+    text("Mass: " + massSlider.value(), windowWidth - windowWidth*0.36, 50);
+    text("Initial Velocity: " + intialVelocitySlider.value(), windowWidth - windowWidth*0.84, 50);
     text("Wind velocity: " + windSlider.value(), windowWidth -windowWidth*.99, 50);
     // text("Enable Wind", windowWidth - windowWidth*0.15, 50);
   }else{
@@ -156,6 +159,9 @@ function draw() {
     }
   }
   } 
+  if(resetCheckBox.checked()){
+    location.reload();
+  }
 }
 window.setup = setup;
 window.draw = draw;
