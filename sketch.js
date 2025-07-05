@@ -105,17 +105,18 @@ function mouseClicked() {
   }
 
 
-  world.gravity = gravitySlider.value();
-  world.restitution = bounceSlider.value();
+
 
 }
 function draw() {
   background(20);
   // world.addWind(-0.1);
 
-   world.show();
+  world.show();
   world.checkBounds();
   world.enableGravity();
+  world.gravity = gravitySlider.value();
+  world.restitution = bounceSlider.value();
   
   if (windowWidth > 768) { // Only display text on wider screens (PC/tablets)
     fill(220);
